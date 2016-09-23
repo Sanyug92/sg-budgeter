@@ -1,0 +1,195 @@
+﻿@model sg_budgeter.Models.Transactions
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SOFT WALLET | FINANCIAL PLANNER</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="~/LoginTemp/css/normalize.css">
+
+    <link rel="stylesheet" href="~/LoginTemp/css/style.css">
+</head>
+<body>
+    @*<video autoplay loop poster="~/loginTemp/css/CupOfCoffeeMoment.jpg')" id="bgvid">
+            <source src="~/" type="video/mp4">
+        </video>*@
+    <div class="form">
+
+        <ul class="tab-group">
+            <li class="tab active"><a style="width:100%" href="#signup">Make a Transaction</a></li>
+
+        </ul>
+        <div class="container">
+            <div class="tab-content">
+                <div id="signup">
+
+
+                    @using (Html.BeginForm())
+            {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                        <div class="top-row">
+                            <div class="field-wrap" style="width:100%">
+                                <label>
+                                    Amount<span class="req">*</span>
+                                </label>
+                                @Html.TextBoxFor(m => m.Amount )
+                            </div>
+                            <div class="field-wrap" style="width:100%">
+                                <label>
+                                    Location<span class="req">*</span>
+                                </label>
+                                @Html.TextBoxFor(m => m.Location) 
+                            </div>
+                           
+                            <div class="field-wrap" style="width:100%">                              
+                              @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", @style = "Width:100%" }) 
+                            </div>
+                            <div class="field-wrap" style="width:100%">
+                                <label>
+                                    Recociled Amount<span class="req">*</span>
+                                </label>
+                                @Html.TextBoxFor(m => m.ReconciledAmount)
+                            </div>
+                            <div class="field-wrap" style="width:100%">
+                                <label>
+                                    Reconciled <span class="req">*</span>
+                                </label>
+                                @Html.TextBoxFor(m => m.Reconciled)
+                            </div>
+
+                           
+                        </div>
+                        <br />
+                        <br />
+
+                        <input type="submit" class="btn btn-default btn-block btn-clean" value="Create" />
+                    }
+
+                    <div style="text-align: center">
+                        @*@Html.ActionLink("Back to List", "Index") |*@
+                        @Html.ActionLink("Add Categories", "Create", "Categories")
+
+                    </div>
+                </div>
+
+                <div id="login">
+                    <h1>Welcome Back!</h1>
+
+
+                </div>
+
+            </div><!-- tab-content -->
+
+        </div> <!-- /form -->
+    </div>
+    @Scripts.Render("~/HTML/js/jquery-1.11.1.min.js")
+    @Scripts.Render("~/LoginTemp/js/index.js")
+</body>
+</html>
+
+
+@*@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Transactions</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AccountId, "AccountId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AccountId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnteredById, "EnteredById", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EnteredById", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EnteredById, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reconciled, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Reconciled)
+                    @Html.ValidationMessageFor(model => model.Reconciled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReconciledAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReconciledAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReconciledAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
